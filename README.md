@@ -2,7 +2,7 @@
 
 Interaktywna ekspozycja 3D **Polskiego Fiata 126p 600 z 1976 roku** (pierwsza seria) w przeglądarce.
 
-**Na żywo:** https://apkmasondev.github.io/maluch/
+**Na żywo:** https://apkmason.dev/maluch/
 
 Można obejrzeć nadwozie, kabinę, silnik i podwozie, otworzyć drzwi, bagażnik i pokrywę silnika, włączyć światła, zmienić lakier (czerwony / biały) i przejrzeć galerię ilustracji.
 
