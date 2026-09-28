@@ -36,10 +36,10 @@
         font-family: Bahnschrift, "Arial Narrow", sans-serif;
       }
     </style>
-    <script type="module" crossorigin src="./assets/index-DrM_Fisq.js"></script>
+    <script type="module" crossorigin src="./assets/index-ButO-b0O.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/three-BDVkc2ik.js">
     <link rel="modulepreload" crossorigin href="./assets/loaders-CrPatnkQ.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-DFeHTmlF.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-DpR4Wn6o.css">
   </head>
   <body>
     <main id="exhibition" aria-label="Interaktywna ekspozycja Fiata 126p">
@@ -69,6 +69,15 @@
           </button>
           <button id="about-button" class="text-button" aria-haspopup="dialog" aria-controls="about-dialog">
             O projekcie
+          </button>
+          <button
+            id="music"
+            class="icon-button music-button"
+            aria-pressed="false"
+            title="Muzyka (M)"
+            aria-label="Włącz lub wyłącz muzykę"
+          >
+            <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
           </button>
           <button
             id="fullscreen"
@@ -198,16 +207,16 @@
         >
       </div>
       <div class="action-tray" id="action-tray">
-        <span class="tray-label">MECHANIZMY</span
-        ><button id="doors" aria-pressed="false">
-          Drzwi <span class="switch"></span></button
-        ><button id="hood" aria-pressed="false">
-          Bagażnik <span class="switch"></span></button
-        ><button id="engine-cover" aria-pressed="false">
-          Pokrywa silnika <span class="switch"></span>
-        </button><button id="lights" aria-pressed="false" title="Pokaz oświetlenia: reflektory, tylne lampy i migające kierunkowskazy. Przy ograniczeniu animacji kierunkowskazy świecą stale.">
-          Światła <span class="switch"></span>
-        </button>
+        <span class="tray-label">MECHANIZMY</span>
+        <button id="doors" class="key" aria-pressed="false" title="Drzwi (D)"><i class="pilot"></i>Drzwi</button>
+        <button id="hood" class="key" aria-pressed="false" title="Przedni bagażnik"><i class="pilot"></i>Bagażnik</button>
+        <button id="engine-cover" class="key" aria-pressed="false" title="Pokrywa silnika"><i class="pilot"></i><span class="long">Pokrywa silnika</span><span class="short">Silnik</span></button>
+        <button id="vents" class="key" aria-pressed="false" title="Uchylne szybki w drzwiach (V)"><i class="pilot"></i>Szybki</button>
+        <span class="tray-label">KIEROWCA</span>
+        <button id="lights" class="key" aria-pressed="false" title="Reflektory i tylne lampy (L)"><i class="pilot"></i>Światła</button>
+        <button id="indicators" class="key" aria-pressed="false" data-mode="off" aria-label="Kierunkowskazy: wyłączone" title="Kierunkowskazy: lewy, prawy, awaryjne (K)"><span class="signal" aria-hidden="true"><i class="arrow-l"></i><i class="arrow-r"></i></span>Kierunki</button>
+        <button id="wipers" class="key" aria-pressed="false" title="Wycieraczki (W)"><i class="pilot"></i>Wycieraczki</button>
+        <button id="steer" class="key" aria-pressed="false" title="Skręt kół kierownicą (S)"><i class="pilot"></i>Skręt kół</button>
       </div>
       <nav class="chapters" aria-label="Obszary samochodu">
         <button class="chapter active" data-view="body" aria-pressed="true">
@@ -291,7 +300,8 @@
           <dd>APKMason<span>.dev</span></dd>
         </dl>
         <p class="about-footnote">Model 3D i interakcje: Blender · Three.js.<br />
-          Ilustracje w galerii powstały z pomocą AI i nie są fotografiami archiwalnymi.</p>
+          Ilustracje w galerii powstały z pomocą AI i nie są fotografiami archiwalnymi.<br />
+          Muzyka (opcjonalna, przycisk w nagłówku) powstała na potrzeby projektu w Suno.</p>
       </dialog>
       <dialog id="sources-dialog" aria-label="Dokumentacja rekonstrukcji Fiata 126p">
         <form method="dialog">
@@ -371,9 +381,9 @@
           Model nie jest skanem ani dokumentacją naprawczą.
         </p>
         <p class="keyboard-help">
-          STEROWANIE: 1–4 widoki · R reset · D drzwi · L światła · Esc zamknij
+          STEROWANIE: 1–4 widoki · R reset · D drzwi · V szybki · L światła · K kierunkowskazy · W wycieraczki · S skręt kół · M muzyka · Esc zamknij
         </p>
       </dialog>
-    </main>
+    </main>
   </body>
 </html>
