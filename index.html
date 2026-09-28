@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#141716" />
+    <meta
+      name="description"
+      content="Interaktywna ekspozycja 3D Polskiego Fiata 126p 600 z 1976 roku — nadwozie, wnętrze, silnik i podwozie."
+    />
+    <title>126p — Studium małego samochodu</title>
+    <link rel="icon" type="image/svg+xml" href="./mark.svg" />
+    <meta name="color-scheme" content="dark" />
+    <!-- Critical paint before the stylesheet arrives (Vite injects it from JS
+         in development): graphite page, UI hidden, loader mark only. -->
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #141618;
+        color: #ece8df;
+        overflow: hidden;
+      }
+      #exhibition > :not(#loader) {
+        visibility: hidden;
+      }
+      #loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: #141618;
+        font-family: Bahnschrift, "Arial Narrow", sans-serif;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/index-DrM_Fisq.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/three-BDVkc2ik.js">
+    <link rel="modulepreload" crossorigin href="./assets/loaders-CrPatnkQ.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-DFeHTmlF.css">
+  </head>
+  <body>
+    <main id="exhibition" aria-label="Interaktywna ekspozycja Fiata 126p">
+      <div
+        id="viewport"
+        aria-label="Model 3D. Przeciągnij, aby obrócić. Kółko myszy przybliża."
+        tabindex="0"
+      ></div>
+      <div class="vignette" aria-hidden="true"></div>
+      <header class="masthead">
+        <a
+          class="identity"
+          href="#"
+          aria-label="Powrót do widoku całego samochodu"
+          ><span class="emblem">m<span>.</span></span
+          ><span>ARCHIWUM<br /><b>MOTORYZACJI</b></span></a
+        >
+        <div class="exhibit-no">
+          EKSPOZYCJA CYFROWA <span class="slash">/</span> KARTA 126p-001
+        </div>
+        <div class="header-actions">
+          <button id="gallery-button" class="text-button" aria-haspopup="dialog">
+            Galeria <span>05</span>
+          </button>
+          <button id="sources-button" class="text-button">
+            Dokumentacja <span>↗</span>
+          </button>
+          <button id="about-button" class="text-button" aria-haspopup="dialog" aria-controls="about-dialog">
+            O projekcie
+          </button>
+          <button
+            id="fullscreen"
+            class="icon-button"
+            title="Pełny ekran"
+            aria-label="Przełącz pełny ekran"
+          >
+            <svg viewBox="0 0 24 24">
+              <path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5" />
+            </svg>
+          </button>
+        </div>
+      </header>
+      <section class="object-heading" aria-label="Informacje o eksponacie">
+        <p class="eyebrow">FABRYKA SAMOCHODÓW MAŁOLITRAŻOWYCH</p>
+        <h1>
+          <span>Polski Fiat</span>126<span class="p">p</span
+          ><span class="year">1976</span>
+        </h1>
+        <div class="variant">
+          <span class="red-line"></span> 600 <span>•</span> PIERWSZA SERIA
+          <span>•</span> BIELSKO-BIAŁA / TYCHY
+        </div>
+        <div class="paint-selector" role="group" aria-label="Kolor lakieru">
+          <span class="paint-label">LAKIER</span>
+          <button type="button" data-paint="red" aria-pressed="true" disabled>
+            <span class="paint-chip paint-red" aria-hidden="true"></span>Czerwony
+          </button>
+          <button type="button" data-paint="white" aria-pressed="false" disabled>
+            <span class="paint-chip paint-white" aria-hidden="true"></span>Biały
+          </button>
+        </div>
+      </section>
+      <aside class="object-note" aria-live="polite">
+        <div class="note-index">
+          <span id="note-number">01</span
+          ><span id="note-category">NADWOZIE</span
+          ><span class="small-cross">+</span>
+        </div>
+        <h2 id="note-title">Nadwozie samonośne, dwudrzwiowe</h2>
+        <p id="note-copy">
+          Stalowa skorupa z przetłoczeniem w talii. Maska obejmuje przód aż do
+          reflektorów, klapa silnika otwiera się w dół.
+        </p>
+        <button id="detail-button" class="detail-link">
+          Zajrzyj pod przednią pokrywę <span>↗</span>
+        </button>
+        <div class="note-rule"></div>
+        <div class="technical-spec">
+          <span id="spec-label">DŁUGOŚĆ CAŁKOWITA</span
+          ><strong id="spec-value">3 054 <small>mm</small></strong>
+        </div>
+      </aside>
+      <div id="hotspots" aria-label="Punkty informacyjne"></div>
+      <div class="left-controls">
+        <button
+          id="dimensions"
+          class="tool-button"
+          aria-pressed="false"
+          title="Pokaż wymiary"
+        >
+          <svg viewBox="0 0 24 24">
+            <path
+              d="M4 7v10m16-10v10M4 12h16m-13-3-3 3 3 3m10-6 3 3-3 3"
+            /></svg
+          ><span>Wymiary</span>
+        </button>
+        <button
+          id="hotspots-toggle"
+          class="tool-button"
+          aria-pressed="false"
+          title="Pokaż punkty detali"
+        >
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="7" />
+            <path d="M12 8v8m-4-4h8" /></svg
+          ><span>Detale</span>
+        </button>
+        <button
+          id="rotate"
+          class="tool-button"
+          aria-pressed="false"
+          title="Automatyczny obrót"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M19 8a8 8 0 1 0 1 7M19 3v5h-5" /></svg
+          ><span>Obrót</span>
+        </button>
+      </div>
+      <div class="right-controls">
+        <button
+          id="zoom-in"
+          class="icon-button"
+          title="Przybliż"
+          aria-label="Przybliż"
+        >
+          +
+        </button>
+        <span class="control-divider"></span>
+        <button
+          id="zoom-out"
+          class="icon-button"
+          title="Oddal"
+          aria-label="Oddal"
+        >
+          −
+        </button>
+        <button
+          id="reset"
+          class="icon-button"
+          title="Przywróć kamerę (R)"
+          aria-label="Przywróć kamerę"
+        >
+          <svg viewBox="0 0 24 24">
+            <path d="M5 8V3m0 5h5M5 8a8 8 0 1 1-1 7" />
+          </svg>
+        </button>
+      </div>
+      <div id="dimension-labels" hidden>
+        <span id="dim-length">3 054 mm</span
+        ><span id="dim-wheelbase">ROZSTAW OSI · 1 840 mm</span
+        ><span id="dim-height">1 335 mm</span>
+      </div>
+      <div class="view-meta">
+        <span class="view-tick"></span
+        ><span id="view-caption">WIDOK ¾ · PRZÓD</span
+        >
+      </div>
+      <div class="action-tray" id="action-tray">
+        <span class="tray-label">MECHANIZMY</span
+        ><button id="doors" aria-pressed="false">
+          Drzwi <span class="switch"></span></button
+        ><button id="hood" aria-pressed="false">
+          Bagażnik <span class="switch"></span></button
+        ><button id="engine-cover" aria-pressed="false">
+          Pokrywa silnika <span class="switch"></span>
+        </button><button id="lights" aria-pressed="false" title="Pokaz oświetlenia: reflektory, tylne lampy i migające kierunkowskazy. Przy ograniczeniu animacji kierunkowskazy świecą stale.">
+          Światła <span class="switch"></span>
+        </button>
+      </div>
+      <nav class="chapters" aria-label="Obszary samochodu">
+        <button class="chapter active" data-view="body" aria-pressed="true">
+          <span class="chapter-number">01</span
+          ><span class="chapter-name"
+            >Nadwozie<small>BRYŁA · WYMIARY</small></span
+          ></button>
+        <button class="chapter" data-view="interior" aria-pressed="false">
+          <span class="chapter-number">02</span
+          ><span class="chapter-name">Wnętrze<small>KABINA 2 + 2</small></span
+          ></button>
+        <button class="chapter" data-view="engine" aria-pressed="false">
+          <span class="chapter-number">03</span
+          ><span class="chapter-name">Silnik<small>594 CM³ · 23 KM</small></span
+          ></button>
+        <button class="chapter" data-view="chassis" aria-pressed="false">
+          <span class="chapter-number">04</span
+          ><span class="chapter-name"
+            >Podwozie<small>ZAWIESZENIE · HAMULCE</small></span
+          ></button>
+      </nav>
+      <footer class="statusbar">
+        <div>
+          <span class="mouse-icon"></span><span>PRZECIĄGNIJ, ABY OBRÓCIĆ</span
+          ><span class="footer-dot">·</span><span>KÓŁKO, ABY PRZYBLIŻYĆ</span>
+        </div>
+        <span id="render-status">MODEL ŁADUJE SIĘ</span
+        ><span class="archive-mark">126p / STUDIUM KONSTRUKCJI</span>
+      </footer>
+      <div id="loader" role="status">
+        <div class="loader-mark">126p<span>ARCHIWUM MOTORYZACJI</span></div>
+        <div class="load-track"><i id="load-progress"></i></div>
+        <p id="load-label">Przygotowuję ekspozycję…</p>
+      </div>
+      <div id="toast" role="status"></div>
+      <dialog id="gallery-dialog" aria-labelledby="gallery-heading">
+        <header class="gallery-header">
+          <div><p class="eyebrow">ARCHIWUM WIZUALNE / FIAT 126p</p><h2 id="gallery-heading">Studium sylwetki.</h2></div>
+          <form method="dialog"><button class="gallery-close" aria-label="Zamknij galerię" autofocus>Zamknij <span>×</span></button></form>
+        </header>
+        <div class="gallery-body">
+          <figure class="gallery-figure">
+            <img id="gallery-image" width="1536" height="1024" sizes="(max-width: 700px) 94vw, 70vw" alt="" decoding="async" />
+            <p id="gallery-image-error" hidden role="status">Nie udało się wczytać obrazu. Wybierz ponownie miniaturę.</p>
+            <figcaption><span id="gallery-view"></span><span>WIZUALIZACJA AI</span></figcaption>
+          </figure>
+          <section class="gallery-note" aria-live="polite" aria-atomic="true">
+            <span class="gallery-index" id="gallery-counter">01 / 05</span>
+            <h3 id="gallery-title"></h3>
+            <p id="gallery-copy"></p>
+            <div class="gallery-datum"><span id="gallery-label"></span><strong id="gallery-datum"></strong></div>
+            <a id="gallery-source" target="_blank" rel="noopener"></a>
+            <p class="gallery-disclaimer">Autorskie wizualizacje AI inspirowane pierwszą serią. Detale mogą odbiegać od oryginału. Fakty dotyczą historycznego samochodu.</p>
+          </section>
+        </div>
+        <footer class="gallery-footer">
+          <div class="gallery-thumbs" role="group" aria-label="Wybierz ujęcie">
+            <button data-plate="0" aria-pressed="true" aria-label="Ujęcie 1: przód"><img width="96" height="64" alt="" /><span>01 <b>Przód</b></span></button>
+            <button data-plate="1" aria-pressed="false" aria-label="Ujęcie 2: profil"><img width="96" height="64" alt="" /><span>02 <b>Profil</b></span></button>
+            <button data-plate="2" aria-pressed="false" aria-label="Ujęcie 3: tył"><img width="96" height="64" alt="" /><span>03 <b>Tył</b></span></button>
+            <button data-plate="3" aria-pressed="false" aria-label="Ujęcie 4: w akcji"><img width="96" height="64" alt="" /><span>04 <b>W akcji</b></span></button>
+            <button data-plate="4" aria-pressed="false" aria-label="Ujęcie 5: na wakacje"><img width="96" height="64" alt="" /><span>05 <b>Wakacje</b></span></button>
+          </div>
+          <div class="gallery-navigation"><button id="gallery-prev" aria-label="Poprzednie zdjęcie">←</button><button id="gallery-next" aria-label="Następne zdjęcie">→</button></div>
+        </footer>
+      </dialog>
+      <dialog id="about-dialog" aria-labelledby="about-heading">
+        <form method="dialog">
+          <button class="dialog-close icon-button" aria-label="Zamknij informacje o projekcie" autofocus>×</button>
+        </form>
+        <p class="eyebrow">ARCHIWUM MOTORYZACJI / O PROJEKCIE</p>
+        <h2 id="about-heading">Mały samochód.<br />Historia w detalach.</h2>
+        <p>Interaktywne studium Polskiego Fiata 126p 600 z 1976 roku.
+          Cyfrowa ekspozycja pozwala obejrzeć nadwozie, zajrzeć do kabiny
+          i poznać rozwiązania ukryte pod pokrywami.</p>
+        <p>Model powstaje na podstawie dokumentacji technicznej i zdjęć prawdziwych
+          samochodów. To edukacyjna rekonstrukcja, rozwijana z dbałością o proporcje,
+          materiały i charakter pierwszej serii Malucha.</p>
+        <dl class="about-credit">
+          <dt>PROJEKT I AUTOR</dt>
+          <dd>APKMason<span>.dev</span></dd>
+        </dl>
+        <p class="about-footnote">Model 3D i interakcje: Blender · Three.js.<br />
+          Ilustracje w galerii powstały z pomocą AI i nie są fotografiami archiwalnymi.</p>
+      </dialog>
+      <dialog id="sources-dialog" aria-label="Dokumentacja rekonstrukcji Fiata 126p">
+        <form method="dialog">
+          <button
+            class="dialog-close icon-button"
+            aria-label="Zamknij dokumentację"
+          >
+            ×
+          </button>
+        </form>
+        <p class="eyebrow">KARTA OBIEKTU / 001</p>
+        <h2>Dokumentacja<br />rekonstrukcji.</h2>
+        <p>
+          Polski Fiat 126p 600, pierwsza seria, 1976. Model edukacyjny
+          odtworzony na podstawie dokumentacji Fiata i fotografii. Czerwony
+          lakier oraz odcień tapicerki są interpretacją wizualną.
+        </p>
+        <dl class="data-table">
+          <div>
+            <dt>Długość × szerokość × wysokość</dt>
+            <dd>3054 × 1377 × 1335 mm</dd>
+          </div>
+          <div>
+            <dt>Rozstaw osi</dt>
+            <dd>1840 mm</dd>
+          </div>
+          <div>
+            <dt>Rozstaw kół — przód / tył</dt>
+            <dd>1142 / 1203 mm</dd>
+          </div>
+          <div>
+            <dt>Silnik / moc</dt>
+            <dd>594 cm³ / 23 KM</dd>
+          </div>
+          <div>
+            <dt>Koła / ogumienie</dt>
+            <dd>4 × 12″ / 135–12</dd>
+          </div>
+        </dl>
+        <h3>Materiały źródłowe</h3>
+        <ol class="source-list">
+          <li>
+            <a
+              href="https://www.fdricambi.com/tech-center-media/126%20Guides/Fiat%20126%20Stampato%20Owners%20Manual%201976%20IT.pdf"
+              target="_blank"
+              rel="noopener"
+              >Fiat 126 — Uso e manutenzione, 1976 ↗</a
+            ><span>Wymiary, koła, wyposażenie wnętrza i mechanika.</span>
+          </li>
+          <li>
+            <a
+              href="https://www.fdricambi.com/tech-center-media/126%20Guides/1%20Fiat%20126%20Allgemeines%20Parts%20Calalog%20DE.pdf"
+              target="_blank"
+              rel="noopener"
+              >Fiat — dokumentacja serwisowa, XI 1973 ↗</a
+            ><span>Fabryczne rzuty i fotografie pierwszej serii.</span>
+          </li>
+          <li>
+            <a
+              href="https://www.media.stellantis.com/pl-pl/fiat/press/fiat-126p-maluch-40-lat-min%C4%99%C5%82o"
+              target="_blank"
+              rel="noopener"
+              >Fiat / Stellantis — historia 126p ↗</a
+            ><span>Polska produkcja, silnik i konstrukcja nadwozia.</span>
+          </li>
+          <li>
+            <a href="https://rezerwa126p.pl/?page_id=22842" target="_blank" rel="noopener"
+              >Rezerwa 126p — kolory pierwszej serii ↗</a
+            ><span>Zestawienie historyczne. Biel inspirowana Bianco 233; odcienie ekranowe są orientacyjne.</span>
+          </li>
+        </ol>
+        <p class="source-limit">
+          Wymiary główne i przekroje nadwozia odczytano z fabrycznego arkusza
+          wymiarowego (XI 1973) i sprawdzono nakładaniem rzutów. Drobne detale
+          odtworzono ze zdjęć fabrycznych i egzemplarzy z lat 1973–76. Podwozie
+          oraz silnik przedstawiają układ zespołów w uproszczeniu edukacyjnym.
+          Model nie jest skanem ani dokumentacją naprawczą.
+        </p>
+        <p class="keyboard-help">
+          STEROWANIE: 1–4 widoki · R reset · D drzwi · L światła · Esc zamknij
+        </p>
+      </dialog>
+    </main>
+  </body>
+</html>
